@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="text-center">
+    <div className="text-center mt-20">
       <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold text-gray-800">
         Fund your
         <br />

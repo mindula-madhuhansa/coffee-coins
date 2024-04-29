@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 import "./globals.css";
 
@@ -20,7 +21,10 @@ export default function SiteLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={lato.className}>{children}</body>
+      <body className={lato.className}>
+        <Toaster />
+        {children}
+      </body>
     </html>
   );
 }
