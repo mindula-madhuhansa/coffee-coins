@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-gray-100 text-gray-800;
+}
+
 input[type="text"],
 textarea {
   @apply block w-full border p-2 rounded-lg focus:outline-none focus:ring-0;
@@ -9,4 +13,20 @@ textarea {
 
 .input-label {
   @apply block mt-4 uppercase text-sm font-bold text-gray-500;
+}
+
+.donation-button {
+  @apply rounded-full font-bold text-xl size-10 p-6 border-4 border-yellow-400 inline-flex items-center justify-center transition-all ease-in-out bg-white;
+}
+
+.donation-button.active {
+  @apply bg-yellow-400;
+}
+
+.crypto-button {
+  @apply bg-gray-200 hover:bg-yellow-300 py-2 rounded-xl px-4 grow;
+}
+
+.crypto-button.active {
+  @apply bg-yellow-400;
 }
