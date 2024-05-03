@@ -25,6 +25,8 @@ export default function DonationForm({ email }: { email: string }) {
 
     const url = await createDonation(formData);
 
+    if (!url) return;
+
     redirect(url);
   }
 

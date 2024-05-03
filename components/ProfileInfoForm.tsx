@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { LogOutIcon, SaveIcon } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 import { saveProfile } from "@/actions/profileInfoActions";
 import { ProfileInfo } from "@/models/ProfileInfo";
@@ -92,12 +94,21 @@ export default function ProfileInfoForm({
           defaultValue={profileInfo?.bio}
         />
       </div>
-      <div>
+      <div className="flex justify-between">
         <button
           type="submit"
-          className="mt-4 px-4 py-2 rounded-lg font-semibold text-lg bg-yellow-400 hover:bg-yellow-300"
+          className="mt-4 px-4 py-2 rounded-lg font-semibold text-lg bg-yellow-400 hover:bg-yellow-300 flex items-center"
         >
-          Save Profile
+          <SaveIcon size={24} className="mr-2" />
+          <span>Save Profile</span>
+        </button>
+        <button
+          className="mt-4 px-4 py-2 rounded-lg font-semibold text-lg bg-gray-300 hover:bg-gray-200 flex items-center"
+          onClick={() => signOut()}
+        >
+          <span>Sign Out</span>
+
+          <LogOutIcon size={24} className="ml-2" />
         </button>
       </div>
     </form>

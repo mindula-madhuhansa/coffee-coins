@@ -1,6 +1,19 @@
+import { StarIcon } from "lucide-react";
+
 export default function Home() {
   return (
     <div className="text-center mt-20">
+      <div className="mb-10">
+        <div className="flex justify-center">
+          <StarIcon fill="currentColor" />
+          <StarIcon fill="currentColor" />
+          <StarIcon fill="currentColor" />
+          <StarIcon fill="currentColor" />
+          <StarIcon fill="currentColor" />
+        </div>
+        <p className="mt-4">Loved by 100K+ creators</p>
+      </div>
+
       <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold text-gray-800">
         Fund your
         <br />

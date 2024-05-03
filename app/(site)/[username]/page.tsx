@@ -4,7 +4,9 @@ import Image from "next/image";
 import { CoffeeIcon } from "lucide-react";
 
 import { ProfileInfo, ProfileInfoModel } from "@/models/ProfileInfo";
+import { Donation, DonationModel } from "@/models/Donation";
 import DonationForm from "@/components/DonationForm";
+import DonationStatus from "@/components/DonationStatus";
 
 type Props = {
   params: {
@@ -25,8 +27,14 @@ export default async function User({ params }: Props) {
     return notFound();
   }
 
+  const donations: Donation[] = await DonationModel.find({
+    paid: true,
+    email: profileInfoDoc.email,
+  });
+
   return (
     <div className="px-6">
+      <DonationStatus />
       <div className="w-full h-64">
         <Image
           src={profileInfoDoc.coverUrl}
@@ -61,9 +69,27 @@ export default async function User({ params }: Props) {
         <div className="bg-white rounded-xl p-4 shadow-sm">
           <h3 className="font-semibold">About {profileInfoDoc.username}</h3>
           {profileInfoDoc.bio}
-          <hr className="my-4" />
-          <h3 className="font-semibold">Recent supporters</h3>
-          <p>No recent donations</p>
+          <h3 className="font-semibold mt-6 text-lg">Recent supporters</h3>
+          {!donations.length ? (
+            <>
+              <hr className=" mb-4" />
+              <p className="text-black/50 font-semibold">
+                No recent donations...
+              </p>
+            </>
+          ) : (
+            donations.map((donation, index) => (
+              <div key={index} className="py-4 border-t">
+                <h3>
+                  <span className="font-semibold">{donation.name} </span>
+                  bought you {donation.amount} coffee(s).
+                </h3>
+                <p className="bg-gray-100 p-2 rounded-md mt-2">
+                  {donation.message}
+                </p>
+              </div>
+            ))
+          )}
         </div>
 
         <div className="bg-white rounded-xl p-4 shadow-sm">
